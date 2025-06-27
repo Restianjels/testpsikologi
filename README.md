@@ -1,1 +1,1 @@
-# testpsikologi
+# testintelegensi
