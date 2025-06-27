@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tes Psikologi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #B399D4; /* Ungu pastel */
+            --primary-light: #D1C4E9;
+            --primary-dark: #9575CD;
+            --secondary: #CE93D8; /* Ungu muda */
+            --light: #F5F5F5;
+            --dark: #4A4A4A;
+            --success: #81C784; /* Hijau pastel */
+            --warning: #FFB74D; /* Oranye pastel */
+            --error: #E57373; /* Merah pastel */
+            --gray: #E0E0E0;
+            --gray-dark: #BDBDBD;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: #FAF5FF; /* Background sangat lembut */
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        
+        h2 {
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #666;
+            font-weight: 400;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(179, 153, 212, 0.3);
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(179, 153, 212, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary-dark);
+            border: 1px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--light);
+        }
+        
+        .form-group {
+            margin-bottom: 18px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            background-color: var(--light);
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(179, 153, 212, 0.2);
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .welcome-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 40px 30px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .question-page {
+            margin-bottom: 25px;
+        }
+        
+        .question {
+            margin-bottom: 18px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--gray);
+            transition: all 0.2s;
+        }
+        
+        .question:hover {
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .options {
+            margin-top: 8px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 6px;
+        }
+        
+        .option {
+            padding: 12px 14px;
+            border: 1px solid var(--gray);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 400;
+            background-color: var(--light);
+        }
+        
+        .option:hover {
+            background-color: #F3E5F5;
+            border-color: var(--primary-light);
+        }
+        
+        .option.selected {
+            background-color: #EDE7F6;
+            border-color: var(--primary);
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+        
+        .correct {
+            background-color: #E8F5E9;
+            border-color: var(--success);
+        }
+        
+        .incorrect {
+            background-color: #FFEBEE;
+            border-color: var(--error);
+        }
+        
+        .result-summary {
+            text-align: center;
+            padding: 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #F3E5F5, #EDE7F6);
+            border-radius: 12px;
+        }
+        
+        .score {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 10px 0;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background-color: var(--gray);
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        
+        .thank-you {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .thank-you-icon {
+            font-size: 60px;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .answer-detail {
+            margin-top: 25px;
+        }
+        
+        .answer-item {
+            margin-bottom: 12px;
+            padding: 14px;
+            border-radius: 8px;
+        }
+        
+        .answer-correct {
+            background-color: rgba(129, 199, 132, 0.1);
+            border-left: 3px solid var(--success);
+        }
+        
+        .answer-incorrect {
+            background-color: rgba(229, 115, 115, 0.1);
+            border-left: 3px solid var(--error);
+        }
+        
+        .answer-status {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .correct-answer {
+            color: var(--success);
+        }
+        
+        .incorrect-answer {
+            color: var(--error);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+        
+        .page-indicator {
+            text-align: center;
+            margin: 15px 0;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+        
+        /* Stiker Welcome */
+        .welcome-sticker {
+            font-family: 'Fredoka One', cursive;
+            font-size: 24px;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 14px 28px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 20px;
+            transform: rotate(-3deg);
+            box-shadow: 0 6px 12px rgba(179, 153, 212, 0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .welcome-icon {
+            font-size: 70px;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            animation: bounce 2.5s infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-8px) rotate(-3deg); }
+            100% { transform: translateY(0px) rotate(-3deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @media (max-width: 600px) {
+            .header {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .question {
+                padding: 12px;
+            }
+            
+            .welcome-sticker {
+                font-size: 20px;
+                padding: 12px 24px;
+            }
+            
+            .welcome-icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Tes Psikologi</h1>
+            <p>Tes ini hanya untuk keperluan pribadi</p>
+        </div>
+        
+        <!-- Halaman Pembuka -->
+        <div id="welcome-page" class="welcome-content">
+            <div class="welcome-icon">✨</div>
+            <div class="welcome-sticker">Selamat Datang!</div>
+            <h2>Halo, Sobat Psikologi!</h2>
+            <p>Tes dirancang untuk refleksi diri Anda.</p>
+            <p>Sebelum melakukan tes, silahkan isi identitas diri Anda!</p>
+            <button id="next-btn" class="btn">Mulai Tes Sekarang</button>
+        </div>
+        
+        <!-- Form Identitas -->
+        <div id="identity-form" class="content hidden">
+            <h2>Data Diri</h2>
+            <div class="form-group">
+                <label for="name">Nama Lengkap</label>
+                <input type="text" id="name" required placeholder="Masukkan nama lengkap Anda">
+            </div>
+            <div class="form-group">
+                <label for="age">Usia</label>
+                <input type="number" id="age" min="10" max="100" required placeholder="Masukkan usia Anda">
+            </div>
+            <div class="form-group">
+                <label for="gender">Jenis Kelamin</label>
+                <select id="gender" required>
+                    <option value="">Pilih Jenis Kelamin</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+            <button id="start-test-btn" class="btn">Lanjut ke Tes</button>
+        </div>
+        
+        <!-- Halaman Tes -->
+        <div id="test-page" class="content hidden">
+            <h2>Tes Analogi</h2>
+            <p>Pilih jawaban yang paling tepat untuk setiap pertanyaan berikut:</p>
+            
+            <!-- Halaman Pertanyaan 1-10 -->
+            <div id="question-page-1" class="question-page">
+                <div id="questions-container-1">
+                    <!-- Pertanyaan 1-10 akan dimuat di sini melalui JavaScript -->
+                </div>
+                <div class="page-indicator">Halaman 1 dari 2</div>
+                <div class="pagination">
+                    <button id="next-page-btn" class="btn">Lanjut ke Halaman 2</button>
+                </div>
+            </div>
+            
+            <!-- Halaman Pertanyaan 11-20 -->
+            <div id="question-page-2" class="question-page hidden">
+                <div id="questions-container-2">
+                    <!-- Pertanyaan 11-20 akan dimuat di sini melalui JavaScript -->
+                </div>
+                <div class="page-indicator">Halaman 2 dari 2</div>
+                <div class="pagination">
+                    <button id="prev-page-btn" class="btn btn-secondary">Kembali ke Halaman 1</button>
+                    <button id="submit-test-btn" class="btn">Selesaikan Tes</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Halaman Hasil -->
+        <div id="result-page" class="content hidden">
+            <h2>Hasil Tes Anda</h2>
+            <div id="result-content">
+                <!-- Hasil akan ditampilkan di sini -->
+            </div>
+            <button id="finish-btn" class="btn">Selesai</button>
+        </div>
+        
+        <!-- Halaman Penutup -->
+        <div id="thank-you-page" class="content hidden">
+            <div class="thank-you">
+                <div class="thank-you-icon">🌸</div>
+                <h2>Terima Kasih!</h2>
+                <p>Anda telah menyelesaikan tes psikologi ini dengan baik.</p>
+                <p>Data Anda telah disimpan dengan aman dan rahasia.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data pertanyaan tes analogi (20 soal)
+        const questions = [
+            {
+                question: "Tumpul : Pisau = Pecah : ?",
+                options: ["Kaca", "Retak", "Lem", "Pot", "Keras"],
+                answer: "Kaca",
+                explanation: "Pisau yang tumpul adalah pisau yang tidak bisa memotong dengan baik, sama seperti kaca yang pecah adalah kaca yang tidak utuh lagi."
+            },
+            {
+                question: "Lapar : Makan = Haus : ?",
+                options: ["Air", "Minuman", "Minum", "Dahaga", "Segar"],
+                answer: "Minum",
+                explanation: "Lapar diatasi dengan makan, sama seperti haus diatasi dengan minum."
+            },
+            {
+                question: "Pensil : Menulis = Penggaris : ?",
+                options: ["Menggambar", "Melukis", "Menggaris", "Kertas", "Ukuran"],
+                answer: "Menggaris",
+                explanation: "Pensil digunakan untuk menulis, sama seperti penggaris digunakan untuk menggaris."
+            },
+            {
+                question: "Pedas : Cabai = Manis : ?",
+                options: ["Gula", "Madu", "Rasa", "Cokelat", "Garam"],
+                answer: "Gula",
+                explanation: "Cabai memiliki rasa pedas, sama seperti gula memiliki rasa manis."
+            },
+            {
+                question: "Dokter : Rumah Sakit = Guru : ?",
+                options: ["Pelajar", "Sekolah", "Kelas", "Buku", "Pendidikan"],
+                answer: "Sekolah",
+                explanation: "Dokter bekerja di rumah sakit, sama seperti guru bekerja di sekolah."
+            },
+            {
+                question: "Kunci : Pintu = Remote : ?",
+                options: ["Tv", "Tombol", "Suara", "Baterai", "Layar"],
+                answer: "Tv",
+                explanation: "Kunci digunakan untuk membuka pintu, sama seperti remote digunakan untuk mengontrol TV."
+            },
+            {
+                question: "Petani : Cangkul = Penulis : ?",
+                options: ["Komputer", "Kertas", "Pena", "Tinta", "Buku"],
+                answer: "Pena",
+                explanation: "Petani menggunakan cangkul sebagai alat utama, sama seperti penulis menggunakan pena (atau alat tulis lainnya)."
+            },
+            {
+                question: "Gigi : Mulut = Jari : ?",
+                options: ["Kuku", "Tangan", "Telapak", "Sarung Tangan", "Lengan"],
+                answer: "Tangan",
+                explanation: "Gigi berada di mulut, sama seperti jari berada di tangan."
+            },
+            {
+                question: "Ikan : Air = Burung : ?",
+                options: ["Udara", "Langit", "Terbang", "Angin", "Pohon"],
+                answer: "Udara",
+                explanation: "Ikan hidup di air, sama seperti burung hidup/terbang di udara."
+            },
+            {
+                question: "Jantung : Darah = Paru-Paru : ?",
+                options: ["Oksigen", "Udara", "Napas", "Hidung", "Dada"],
+                answer: "Oksigen",
+                explanation: "Jantung memompa darah, sama seperti paru-paru memproses oksigen."
+            },
+            {
+                question: "Membangun : Merobohkan = Mencintai : ?",
+                options: ["Menghargai", "Membenci", "Merawat", "Mengenang", "Menyayangi"],
+                answer: "Membenci",
+                explanation: "Membangun lawan katanya merobohkan, sama seperti mencintai lawan katanya membenci."
+            },
+            {
+                question: "Aroma : Parfum = Suara : ?",
+                options: ["Gelombang", "Musik", "Alat", "Lagu", "Mikrofon"],
+                answer: "Musik",
+                explanation: "Parfum menghasilkan aroma, sama seperti musik menghasilkan suara."
+            },
+            {
+                question: "Kereta Gantung : Kabel = Lift : ?",
+                options: ["Tangga", "Poros", "Rel Vertikal", "Tiang", "Lorong"],
+                answer: "Rel Vertikal",
+                explanation: "Kereta gantung bergerak menggunakan kabel, sama seperti lift bergerak menggunakan rel vertikal."
+            },
+            {
+                question: "Kapas : Sutra = Baju : ?",
+                options: ["Celana", "Jas", "Kain", "Linen", "Wol"],
+                answer: "Celana",
+                explanation: "Kapas dan sutra adalah bahan pakaian, sama seperti baju dan celana adalah jenis pakaian."
+            },
+            {
+                question: "Persegi Panjang : Balok = Lingkaran : ?",
+                options: ["Tabung", "Bola", "Kerucut", "Balok", "Kubus"],
+                answer: "Bola",
+                explanation: "Balok adalah bentuk 3D dari persegi panjang, sama seperti bola adalah bentuk 3D dari lingkaran."
+            },
+            {
+                question: "Sakelar : Lampu = Tuas : ?",
+                options: ["Listrik", "Mesin", "Gigi", "Tangga", "Dinding"],
+                answer: "Mesin",
+                explanation: "Sakelar mengontrol lampu, sama seperti tuas mengontrol mesin."
+            },
+            {
+                question: "Mata : Cahaya = Hidung : ?",
+                options: ["Bau", "Aroma", "Wangi", "Udara", "Bau Busuk"],
+                answer: "Bau",
+                explanation: "Mata mendeteksi cahaya, sama seperti hidung mendeteksi bau."
+            },
+            {
+                question: "Data : Jaringan = Darah : ?",
+                options: ["Jantung", "Pembuluh", "Organ", "Plasma", "Nadi"],
+                answer: "Pembuluh",
+                explanation: "Data mengalir melalui jaringan, sama seperti darah mengalir melalui pembuluh."
+            },
+            {
+                question: "Paru-Paru : Oksigen = Lambung : ?",
+                options: ["Energi", "Nutrisi", "Makanan", "Pencernaan", "Lemak"],
+                answer: "Makanan",
+                explanation: "Paru-paru memproses oksigen, sama seperti lambung memproses makanan."
+            },
+            {
+                question: "Koki : Dapur = Montir : ?",
+                options: ["Mobil", "Bengkel", "Mesin", "Oli", "Alat"],
+                answer: "Bengkel",
+                explanation: "Koki bekerja di dapur, sama seperti montir bekerja di bengkel."
+            }
+        ];
+
+        // Variabel untuk menyimpan jawaban
+        let userAnswers = new Array(questions.length);
+        
+        // Elemen DOM
+        const welcomePage = document.getElementById('welcome-page');
+        const identityForm = document.getElementById('identity-form');
+        const testPage = document.getElementById('test-page');
+        const resultPage = document.getElementById('result-page');
+        const thankYouPage = document.getElementById('thank-you-page');
+        const nextBtn = document.getElementById('next-btn');
+        const startTestBtn = document.getElementById('start-test-btn');
+        const nextPageBtn = document.getElementById('next-page-btn');
+        const prevPageBtn = document.getElementById('prev-page-btn');
+        const submitTestBtn = document.getElementById('submit-test-btn');
+        const finishBtn = document.getElementById('finish-btn');
+        const questionsContainer1 = document.getElementById('questions-container-1');
+        const questionsContainer2 = document.getElementById('questions-container-2');
+        const questionPage1 = document.getElementById('question-page-1');
+        const questionPage2 = document.getElementById('question-page-2');
+        const resultContent = document.getElementById('result-content');
+        
+        // Navigasi antar halaman
+        nextBtn.addEventListener('click', () => {
+            welcomePage.classList.add('hidden');
+            identityForm.classList.remove('hidden');
+        });
+        
+        startTestBtn.addEventListener('click', () => {
+            // Validasi form
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            
+            if (!name || !age || !gender) {
+                alert('Harap lengkapi semua data identitas terlebih dahulu');
+                return;
+            }
+            
+            identityForm.classList.add('hidden');
+            testPage.classList.remove('hidden');
+            loadQuestions();
+        });
+        
+        // Memuat pertanyaan ke halaman tes (dibagi 2 halaman)
+        function loadQuestions() {
+            questionsContainer1.innerHTML = '';
+            questionsContainer2.innerHTML = '';
+            userAnswers = new Array(questions.length);
+            
+            // Halaman 1 (Soal 1-10)
+            for (let i = 0; i < 10; i++) {
+                const q = questions[i];
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                
+                const questionText = document.createElement('h3');
+                questionText.textContent = `${i + 1}. ${q.question}`;
+                questionDiv.appendChild(questionText);
+                
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options';
+                
+                q.options.forEach((option) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+                    optionDiv.textContent = option;
+                    
+                    optionDiv.addEventListener('click', () => {
+                        // Hapus selected dari semua opsi di pertanyaan ini
+                        const allOptions = optionsDiv.querySelectorAll('.option');
+                        allOptions.forEach(opt => opt.classList.remove('selected'));
+                        
+                        // Tambahkan selected ke opsi yang dipilih
+                        optionDiv.classList.add('selected');
+                        
+                        // Simpan jawaban user
+                        userAnswers[i] = option;
+                    });
+                    
+                    optionsDiv.appendChild(optionDiv);
+                });
+                
+                questionDiv.appendChild(optionsDiv);
+                questionsContainer1.appendChild(questionDiv);
+            }
+            
+            // Halaman 2 (Soal 11-20)
+            for (let i = 10; i < 20; i++) {
+                const q = questions[i];
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                
+                const questionText = document.createElement('h3');
+                questionText.textContent = `${i + 1}. ${q.question}`;
+                questionDiv.appendChild(questionText);
+                
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options';
+                
+                q.options.forEach((option) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+                    optionDiv.textContent = option;
+                    
+                    optionDiv.addEventListener('click', () => {
+                        // Hapus selected dari semua opsi di pertanyaan ini
+                        const allOptions = optionsDiv.querySelectorAll('.option');
+                        allOptions.forEach(opt => opt.classList.remove('selected'));
+                        
+                        // Tambahkan selected ke opsi yang dipilih
+                        optionDiv.classList.add('selected');
+                        
+                        // Simpan jawaban user
+                        userAnswers[i] = option;
+                    });
+                    
+                    optionsDiv.appendChild(optionDiv);
+                });
+                
+                questionDiv.appendChild(optionsDiv);
+                questionsContainer2.appendChild(questionDiv);
+            }
+        }
+        
+        // Navigasi antar halaman soal
+        nextPageBtn.addEventListener('click', () => {
+            questionPage1.classList.add('hidden');
+            questionPage2.classList.remove('hidden');
+        });
+        
+        prevPageBtn.addEventListener('click', () => {
+            questionPage2.classList.add('hidden');
+            questionPage1.classList.remove('hidden');
+        });
+        
+        // Menangani pengiriman tes
+        submitTestBtn.addEventListener('click', () => {
+            // Cek apakah semua pertanyaan telah dijawab
+            const unanswered = userAnswers.filter(answer => !answer).length;
+            
+            if (unanswered > 0) {
+                alert(`Anda belum menjawab ${unanswered} pertanyaan. Harap lengkapi semua pertanyaan sebelum menyelesaikan tes.`);
+                return;
+            }
+            
+            testPage.classList.add('hidden');
+            resultPage.classList.remove('hidden');
+            showResults();
+        });
+        
+        // Menampilkan hasil tes
+        function showResults() {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            
+            // Hitung skor
+            let correctCount = 0;
+            questions.forEach((q, index) => {
+                if (userAnswers[index] === q.answer) {
+                    correctCount++;
+                }
+            });
+            
+            const percentage = Math.round((correctCount / questions.length) * 100);
+            
+            // Interpretasi hasil
+            let interpretation = '';
+            if (percentage < 50) {
+                interpretation = 'Anda mungkin perlu lebih banyak melatih kemampuan berpikir analogis. Cobalah untuk lebih memperhatikan hubungan antara konsep-konsep sehari-hari.';
+            } else if (percentage < 80) {
+                interpretation = 'Kemampuan berpikir analogis Anda cukup baik. Anda mampu melihat hubungan antara konsep-konsep dasar dengan baik.';
+            } else {
+                interpretation = 'Sangat mengesankan! Kemampuan berpikir analogis Anda sangat baik. Anda memiliki kemampuan yang kuat dalam melihat hubungan antara berbagai konsep.';
+            }
+            
+            // Warna berdasarkan skor
+            let scoreColor = '';
+            if (percentage < 50) {
+                scoreColor = 'var(--error)';
+            } else if (percentage < 80) {
+                scoreColor = 'var(--warning)';
+            } else {
+                scoreColor = 'var(--success)';
+            }
+            
+            resultContent.innerHTML = `
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <p>${name}</p>
+                </div>
+                <div class="form-group">
+                    <label>Usia</label>
+                    <p>${age} tahun</p>
+                </div>
+                <div class="form-group">
+                    <label>Jenis Kelamin</label>
+                    <p>${gender}</p>
+                </div>
+                
+                <div class="result-summary">
+                    <p>Total Jawaban Benar:</p>
+                    <div class="score" style="color: ${scoreColor}">${correctCount}/${questions.length}</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: ${percentage}%"></div>
+                    </div>
+                    <p>${percentage}% benar • ${interpretation}</p>
+                </div>
+                
+                <div class="answer-detail">
+                    <h3>Detail Jawaban</h3>
+                    ${questions.map((q, index) => {
+                        const isCorrect = userAnswers[index] === q.answer;
+                        return `
+                            <div class="answer-item ${isCorrect ? 'answer-correct' : 'answer-incorrect'}">
+                                <div class="answer-status">
+                                    Pertanyaan ${index + 1}: ${isCorrect ? '<span class="correct-answer">Benar</span>' : '<span class="incorrect-answer">Salah</span>'}
+                                </div>
+                                <p><strong>${q.question}</strong></p>
+                                <p>Jawaban Anda: ${userAnswers[index] || '-'}</p>
+                                <p>Jawaban Benar: ${q.answer}</p>
+                                <p><em>${q.explanation}</em></p>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+        
+        // Tombol selesai
+        finishBtn.addEventListener('click', () => {
+            resultPage.classList.add('hidden');
+            thankYouPage.classList.remove('hidden');
+            
+            // Scroll ke atas
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>. 
